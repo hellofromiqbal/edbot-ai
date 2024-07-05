@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import { Close, InfoOutlined } from '@mui/icons-material';
 
-const MenuAppBar = () => {
+const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -32,4 +32,4 @@ const MenuAppBar = () => {
   );
 };
 
-export default MenuAppBar;
+export default Navbar;
