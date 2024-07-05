@@ -10,7 +10,7 @@ const FontSlider = () => {
         <FontDownloadOutlinedIcon sx={{ fontSize: '1.25rem' }}/>
         <Slider
           size="medium"
-          defaultValue={70}
+          defaultValue={0}
           aria-label="Small"
           valueLabelDisplay="off"
           step={50}
