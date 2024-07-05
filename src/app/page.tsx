@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 
 export default function Home() {
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: 'ghostwhite' }}>
+    <Box sx={{ minHeight: '100vh' }}>
       <Navbar />
       <PageContent />
     </Box>

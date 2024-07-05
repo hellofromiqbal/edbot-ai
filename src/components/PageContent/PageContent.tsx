@@ -5,7 +5,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { Description, Forum } from '@mui/icons-material';
-import { Typography } from '@mui/material';
+import FontSlider from '../Slider/FontSlider';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -25,7 +25,7 @@ function CustomTabPanel(props: TabPanelProps) {
       {...other}
       sx={{ minHeight: '100vh', pt: { xs: '8.3rem', md: '8.5rem' } }}
     >
-      {value === index && <Box sx={{ height: 145, bgcolor: '#d0e0f9' }}>{children}</Box>}
+      {value === index && <Box sx={{ height: 145, bgcolor: '#d0e0f9', pt: '15px', display: 'flex', justifyContent: 'center' }}>{children}</Box>}
     </Box>
   );
 }
@@ -45,9 +45,9 @@ const PageContent = () => {
   };
 
   return (
-    <Box sx={{ width: '100%', position: 'fixed', bottom: 0, left: 0, bgcolor: 'background.paper', zIndex: 1000 }}>
+    <Box sx={{ width: '100%', position: 'fixed', bottom: 0, left: 0, bgcolor: '#f8f7fc', zIndex: 1000 }}>
       <CustomTabPanel value={value} index={0}>
-        <Typography variant='h1'>Hello</Typography>
+        <FontSlider/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         Item Two
