@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { CssBaseline } from "@mui/material";
-import ReduxProvider from "@/utils/redux/Provider";
+import ReduxProvider from "@/utils/redux/ReduxProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,4 +29,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
