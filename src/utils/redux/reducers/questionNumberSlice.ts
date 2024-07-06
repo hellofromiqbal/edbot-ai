@@ -6,15 +6,12 @@ export const questionNumberSlice = createSlice({
     value: 0,
   },
   reducers: {
-    increment: (state) => {
+    incrementQuestionNumber: (state) => {
       state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
     }
   },
 });
 
-export const { increment, decrement } = questionNumberSlice.actions;
+export const { incrementQuestionNumber } = questionNumberSlice.actions;
 
 export default questionNumberSlice.reducer;
