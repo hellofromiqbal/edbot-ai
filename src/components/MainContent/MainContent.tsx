@@ -2,12 +2,23 @@ import { Box, Button, Paper, Typography } from '@mui/material';
 import React from 'react';
 import CustomTabPanel from '../CustomTabPanel/CustomTabPanel';
 import FontSlider from '../Slider/FontSlider';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/utils/redux/store';
+import questions from '@/data/questions.json';
 
 type MainContentProps = {
   value: number;
 };
 
 const MainContent = ({ value }: MainContentProps) => {
+  const questionNumber = useSelector((state: RootState) => state.questionNumber.value);
+
+  const currentQuestion = questions[questionNumber];
+
+  if(!currentQuestion) {
+    return <Typography>No Question data available</Typography>;
+  };
+
   return (
     <>
       <CustomTabPanel value={value} index={0}>
@@ -34,7 +45,7 @@ const MainContent = ({ value }: MainContentProps) => {
               top: 30
             }}
           >
-            <Typography sx={{ fontSize: '14px' }}>My name is Lisa. I wake up at 7 o'clock every morning. I take a shower and get dressed. Then, I have breakfast with my family. After that, I go to school. I study English and math. I have lunch at 12 o'clock. In the afternoon, I have art class. I go home at 4 o'clock. In the evening, I watch TV and do my homework. I go to bed at 9 o'clock.</Typography>
+            <Typography sx={{ fontSize: '14px' }}>{currentQuestion.question_data.definition}</Typography>
           </Paper>
         </Box>
       </CustomTabPanel>
@@ -62,7 +73,7 @@ const MainContent = ({ value }: MainContentProps) => {
               alignItems: 'center'
             }}
           >
-            <Typography sx={{ fontWeight: 'bold' }}>What subjects does Lisa study at school?</Typography>
+            <Typography sx={{ fontWeight: 'bold' }}>{currentQuestion.question_data.question}</Typography>
           </Paper>
         </Box>
         <Box
@@ -72,19 +83,14 @@ const MainContent = ({ value }: MainContentProps) => {
             gap: 1,
             px: { xs: 3 , md: 13 },
             pt: 2,
-          }}>
-          <Button variant='outlined' fullWidth sx={{ minHeight: 55, borderRadius: '10px', display: 'flex', justifyContent: 'start' }}>
-            <Typography fontSize='14px' sx={{ fontWeight: 'bold', textTransform: 'initial' }}>Art and English</Typography>
-          </Button>
-          <Button variant='outlined' fullWidth sx={{ minHeight: 55, borderRadius: '10px', display: 'flex', justifyContent: 'start' }}>
-            <Typography fontSize='14px' sx={{ fontWeight: 'bold', textTransform: 'initial' }}>Math and Science</Typography>
-          </Button>
-          <Button variant='outlined' fullWidth sx={{ minHeight: 55, borderRadius: '10px', display: 'flex', justifyContent: 'start' }}>
-            <Typography fontSize='14px' sx={{ fontWeight: 'bold', textTransform: 'initial' }}>History and Art</Typography>
-          </Button>
-          <Button variant='outlined' fullWidth sx={{ minHeight: 55, borderRadius: '10px', display: 'flex', justifyContent: 'start' }}>
-            <Typography fontSize='14px' sx={{ fontWeight: 'bold', textTransform: 'initial' }}>English and Math</Typography>
-          </Button>
+          }}
+        >
+          {currentQuestion.question_data.options.map((option, index) => (
+            <Button key={index} variant='outlined' fullWidth sx={{ minHeight: 55, borderRadius: '10px', display: 'flex', justifyContent: 'start' }}>
+              <Typography fontSize='14px' sx={{ fontWeight: 'bold', textTransform: 'initial' }}>{option}</Typography>
+            </Button>
+
+          ))}
         </Box>
       </CustomTabPanel>
     </>
