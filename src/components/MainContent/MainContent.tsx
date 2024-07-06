@@ -16,6 +16,8 @@ const MainContent = () => {
   const router = useRouter();
 
   const dispatch = useDispatch();
+
+  const currentFontSize = useSelector((state: RootState) => state.passageFontSize.value);
   
   const currentTabIndexValue = useSelector((state: RootState) => state.tabIndexValue.value);
 
@@ -59,7 +61,7 @@ const MainContent = () => {
         <Box sx={{ pt: 2, height: 150, display: 'flex', flexDirection: 'column', alignItems: 'center', bgcolor: '#d0e0f9'}}>
           <FontSlider/>
           <Paper elevation={1} sx={{ p: 1, width: '90%', minHeight: { xs: 'max-content', md: 100 }, borderRadius: '10px', borderTop: '3px solid #03a9f4', position: 'relative', top: 30 }}>
-            <Typography sx={{ fontSize: '14px' }}>
+            <Typography sx={{ fontSize: `${currentFontSize}px` }}>
               {currentQuestion.question_data.passage}
             </Typography>
           </Paper>
