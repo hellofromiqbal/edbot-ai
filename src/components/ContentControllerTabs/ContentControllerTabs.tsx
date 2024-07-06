@@ -1,11 +1,11 @@
+'use client'
+
 import React from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
 import { Description, Forum } from '@mui/icons-material';
-
-type ContentControllerTabsProps = {
-  value: number;
-  handleChange: (event: React.SyntheticEvent, newValue: number) => void;
-};
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/utils/redux/store';
+import { setCurrentTabIndex } from '@/utils/redux/reducers/tabIndexValueSlice';
 
 function a11yProps(index: number) {
   return {
@@ -14,10 +14,13 @@ function a11yProps(index: number) {
   };
 };
 
-const ContentControllerTabs = ({ value, handleChange }: ContentControllerTabsProps) => {
+const ContentControllerTabs = () => {
+  const dispatch = useDispatch();
+  const currentTabIndexValue = useSelector((state: RootState) => state.tabIndexValue.value);
+  
   return (
     <Box sx={{ bgcolor: '#222e3a' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant='fullWidth'>
+      <Tabs value={currentTabIndexValue} onChange={(e, newValue) => dispatch(setCurrentTabIndex(newValue))} aria-label="basic tabs example" variant='fullWidth'>
         <Tab
           icon={<Description />}
           iconPosition="start"

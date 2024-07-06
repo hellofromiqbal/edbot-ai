@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Button, Paper, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CustomTabPanel from '../CustomTabPanel/CustomTabPanel';
@@ -7,13 +9,12 @@ import { RootState } from '@/utils/redux/store';
 import { incrementProgressValue } from '@/utils/redux/reducers/progressValueSlice';
 import { incrementQuestionNumber } from '@/utils/redux/reducers/questionNumberSlice';
 import questions from '@/data/questions.json';
+import { setCurrentTabIndex } from '@/utils/redux/reducers/tabIndexValueSlice';
 
-type MainContentProps = {
-  value: number;
-};
-
-const MainContent = ({ value }: MainContentProps) => {
+const MainContent = () => {
   const dispatch = useDispatch();
+  
+  const currentTabIndexValue = useSelector((state: RootState) => state.tabIndexValue.value);
 
   const [state, setState] = useState({
     selectedOption: '',
@@ -41,11 +42,12 @@ const MainContent = ({ value }: MainContentProps) => {
   const handleClickContinue = () => {
     dispatch(incrementQuestionNumber());
     setState({...state, selectedOption: '', answerCorrectly: false, showResult: false});
+    dispatch(setCurrentTabIndex(0));
   };
 
   return (
     <>
-      <CustomTabPanel value={value} index={0}>
+      <CustomTabPanel value={currentTabIndexValue} index={0}>
         <Box sx={{ pt: 2, height: 150, display: 'flex', flexDirection: 'column', alignItems: 'center', bgcolor: '#d0e0f9'}}>
           <FontSlider/>
           <Paper elevation={1} sx={{ p: 1, width: '90%', minHeight: { xs: 'max-content', md: 100 }, borderRadius: '10px', borderTop: '3px solid #03a9f4', position: 'relative', top: 30 }}>
@@ -56,7 +58,7 @@ const MainContent = ({ value }: MainContentProps) => {
         </Box>
       </CustomTabPanel>
 
-      <CustomTabPanel value={value} index={1}>
+      <CustomTabPanel value={currentTabIndexValue} index={1}>
         <Box sx={{ py: 2, px: 2.5, height: 150, display: 'flex', flexDirection: 'column', alignItems: 'center', bgcolor: '#d0e0f9' }}>
           <Paper elevation={1} sx={{ p: 1, width: '100%', minHeight: 100, borderRadius: '10px', borderLeft: '3px solid #03a9f4', display: 'flex', alignItems: 'center' }}>
             <Typography sx={{ fontWeight: 'bold' }}>
