@@ -40,7 +40,7 @@ const Modal = () => {
   } else if('info') {
     return (
       <Box sx={{ width: '100%', height: '100vh', position: 'absolute', bgcolor: 'rgba(0, 0, 0, .5)', zIndex: 3, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Paper elevation={4} sx={{ height: 350, width: '45%', p: 4, bgcolor: 'white', borderRadius: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Paper elevation={4} sx={{ height: 250, width: { xs: '90%', md: '35%' }, p: 4, bgcolor: 'white', borderRadius: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography sx={{ textAlign: 'center' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, facere sit praesentium tenetur perferendis et minus unde velit ab consequatur!</Typography>
           <Button disableElevation variant="contained" sx={{ color: '#4caf50', bgcolor: 'transparent', ':hover': { bgcolor: '#eee' }, width: '100%' }} onClick={() => dispatch(setModalVisibility({ visibility: false, type: '' }))}>Close</Button>
         </Paper>
