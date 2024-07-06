@@ -10,8 +10,11 @@ import { incrementProgressValue } from '@/utils/redux/reducers/progressValueSlic
 import { incrementQuestionNumber } from '@/utils/redux/reducers/questionNumberSlice';
 import questions from '@/data/questions.json';
 import { setCurrentTabIndex } from '@/utils/redux/reducers/tabIndexValueSlice';
+import { useRouter } from 'next/navigation';
 
 const MainContent = () => {
+  const router = useRouter();
+
   const dispatch = useDispatch();
   
   const currentTabIndexValue = useSelector((state: RootState) => state.tabIndexValue.value);
@@ -27,15 +30,18 @@ const MainContent = () => {
   const currentQuestion = questions[questionNumber];
 
   if(!currentQuestion) {
-    return <Typography>No Question data available</Typography>;
+    router.push("/english-reading-basic-a1/thank-you");
+    return;
   };
 
   const handleClickOption = (option: string, answer: string) => {
     if(option === answer) {
       dispatch(incrementProgressValue());
       setState({...state, selectedOption: option, answerCorrectly: true, showResult: true});
+      return;
     } else {
       setState({...state, selectedOption: option, answerCorrectly: false, showResult: true});
+      return;
     };
   };
 
