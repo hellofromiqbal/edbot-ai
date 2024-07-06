@@ -8,10 +8,13 @@ export const progressValueSlice = createSlice({
   reducers: {
     incrementProgressValue: (state) => {
       state.value += 20;
-    }
+    },
+    resetProgressValue: (state) => {
+      state.value = 0;
+    },
   },
 });
 
-export const { incrementProgressValue } = progressValueSlice.actions;
+export const { incrementProgressValue, resetProgressValue } = progressValueSlice.actions;
 
 export default progressValueSlice.reducer;

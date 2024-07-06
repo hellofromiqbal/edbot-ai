@@ -8,10 +8,13 @@ export const questionNumberSlice = createSlice({
   reducers: {
     incrementQuestionNumber: (state) => {
       state.value += 1;
+    },
+    resetQuestionNumber: (state) => {
+      state.value = 0;
     }
   },
 });
 
-export const { incrementQuestionNumber } = questionNumberSlice.actions;
+export const { incrementQuestionNumber, resetQuestionNumber } = questionNumberSlice.actions;
 
 export default questionNumberSlice.reducer;

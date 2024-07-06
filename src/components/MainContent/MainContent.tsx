@@ -6,8 +6,8 @@ import CustomTabPanel from '../CustomTabPanel/CustomTabPanel';
 import FontSlider from '../Slider/FontSlider';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/utils/redux/store';
-import { incrementProgressValue } from '@/utils/redux/reducers/progressValueSlice';
-import { incrementQuestionNumber } from '@/utils/redux/reducers/questionNumberSlice';
+import { incrementProgressValue, resetProgressValue } from '@/utils/redux/reducers/progressValueSlice';
+import { incrementQuestionNumber, resetQuestionNumber } from '@/utils/redux/reducers/questionNumberSlice';
 import questions from '@/data/questions.json';
 import { setCurrentTabIndex } from '@/utils/redux/reducers/tabIndexValueSlice';
 import { useRouter } from 'next/navigation';
@@ -31,12 +31,14 @@ const MainContent = () => {
 
   if(!currentQuestion) {
     router.push("/english-reading-basic-a1/thank-you");
+    dispatch(resetProgressValue());
+    dispatch(resetQuestionNumber());
     return;
   };
 
   const handleClickOption = (option: string, answer: string) => {
+    dispatch(incrementProgressValue());
     if(option === answer) {
-      dispatch(incrementProgressValue());
       setState({...state, selectedOption: option, answerCorrectly: true, showResult: true});
       return;
     } else {
